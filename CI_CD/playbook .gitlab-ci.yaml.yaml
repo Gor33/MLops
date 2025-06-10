@@ -1,0 +1,23 @@
+variables:
+  GIT_STRATEGY: none
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  tags:
+    - netology
+  script:
+    - echo "Building"
+    - mkdir -p build
+    - echo "Build information" > build/info.txt
+
+test:
+  stage: test
+  tags:
+    - netology
+  script:
+    - echo "Testing"
+    - if [ -f build/info.txt ]; then echo "info.txt exists"; else echo "info.txt not found" && exit 1; fi
